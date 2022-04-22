@@ -4,6 +4,8 @@ const pwd = require("./pwd");
 const ls = require("./ls");
 const cat = require("./cat");
 const curl = require("./curl");
+const date = require("./date");
+const echo = require("./echo");
 
 function write(data) {
   process.stdout.write(data);
@@ -24,6 +26,10 @@ process.stdin.on("data", (data) => {
     cat(cmd[1], write);
   } else if (cmd[0] === "curl") {
     curl(cmd[1], write);
+  } else if (cmd[0] === "date") {
+    date(write);
+  } else if (cmd[0] === "echo") {
+    echo(cmd.slice(1).join(" "), write);
   } else {
     write("You typed: " + cmd);
   }
